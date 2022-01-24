@@ -393,7 +393,7 @@
                             "skipDos2Unix": true
                         },
                         "protectedSettings": {
-                            "commandToExecute": "sh setup-nginx.sh westus2",
+                            "commandToExecute": "sh setup-nginx.sh westus",
                             "fileUris": [
                                 "[uri(variables('deploymentUrl'), 'setup-nginx.sh')]"
                             ]
