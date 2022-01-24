@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "username": {
@@ -11,7 +11,7 @@
         }
     },
     "variables": {
-        "deploymentUrl": "[deployment().properties.templateLink.uri]",
+        "deploymentUrl": "https://raw.githubusercontent.com/rambo2/Test-Funcs/master/",
         "eastasiaVnetName": "eastasia-vnet",
         "eastasiaVnetAddressPrefix": "10.1.0.0/16",
         "eastasiaVnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks', variables('eastasiaVnetName'))]",
@@ -393,7 +393,7 @@
                             "skipDos2Unix": true
                         },
                         "protectedSettings": {
-                            "commandToExecute": "sh setup-nginx.sh westus2",
+                            "commandToExecute": "sh setup-nginx.sh eastus",
                             "fileUris": [
                                 "[uri(variables('deploymentUrl'), 'setup-nginx.sh')]"
                             ]
