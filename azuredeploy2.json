@@ -26,20 +26,20 @@
         "eastasiaVMNicResourceId": "[resourceId('Microsoft.Network/networkInterfaces', variables('eastasiaVMNicName'))]",
         "eastasiaVMNicPIPResourceId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('eastasiaVMNicPIPName'))]",
         "eastasiaSubnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('eastasiaVnetName'), variables('eastasiaSubnetName'))]",
-        "westus2VnetName": "westus2-vnet",
-        "westus2VnetAddressPrefix": "10.2.0.0/16",
-        "westus2VnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks', variables('westus2VnetName'))]",
-        "westus2NSGName": "westus2-nsg",
-        "westus2NSGResourceId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('westus2NSGName'))]",
-        "westus2VMName": "westus2-vm",
-        "westus2VMNicName": "westus2-vm-nic",
-        "westus2VMNicPIPName": "westus2-vm-nic-pip",
-        "westus2SubnetName": "westus2-subnet",
-        "westus2SubnetPrefix": "10.2.0.0/24",
-        "westus2VMDNSName": "[concat(variables('westus2VMName'), '-', uniqueString(resourceGroup().id))]",
-        "westus2VMNicResourceId": "[resourceId('Microsoft.Network/networkInterfaces', variables('westus2VMNicName'))]",
-        "westus2VMNicPIPResourceId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('westus2VMNicPIPName'))]",
-        "westus2SubnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('westus2VnetName'), variables('westus2SubnetName'))]"
+        "eastusVnetName": "eastus-vnet",
+        "eastusVnetAddressPrefix": "10.2.0.0/16",
+        "eastusVnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks', variables('eastusVnetName'))]",
+        "eastusNSGName": "eastus-nsg",
+        "eastusNSGResourceId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('eastusNSGName'))]",
+        "eastusVMName": "eastus-vm",
+        "eastusVMNicName": "eastus-vm-nic",
+        "eastusVMNicPIPName": "eastus-vm-nic-pip",
+        "eastusSubnetName": "eastus-subnet",
+        "eastusSubnetPrefix": "10.2.0.0/24",
+        "eastusVMDNSName": "[concat(variables('eastusVMName'), '-', uniqueString(resourceGroup().id))]",
+        "eastusVMNicResourceId": "[resourceId('Microsoft.Network/networkInterfaces', variables('eastusVMNicName'))]",
+        "eastusVMNicPIPResourceId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('eastusVMNicPIPName'))]",
+        "eastusSubnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('eastusVnetName'), variables('eastusSubnetName'))]"
     },
     "resources": [
         {
@@ -68,9 +68,9 @@
         },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[variables('westus2NSGName')]",
+            "name": "[variables('eastusNSGName')]",
             "apiVersion": "2018-08-01",
-            "location": "westus2",
+            "location": "eastus",
             "properties": {
                 "securityRules": [
                     {
@@ -114,20 +114,20 @@
         },
         {
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[variables('westus2VnetName')]",
+            "name": "[variables('eastusVnetName')]",
             "apiVersion": "2018-08-01",
-            "location": "westus2",
+            "location": "eastus",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "[variables('westus2VnetAddressPrefix')]"
+                        "[variables('eastusVnetAddressPrefix')]"
                     ]
                 },
                 "subnets": [
                     {
-                        "name": "[variables('westus2SubnetName')]",
+                        "name": "[variables('eastusSubnetName')]",
                         "properties": {
-                            "addressPrefix": "[variables('westus2SubnetPrefix')]"
+                            "addressPrefix": "[variables('eastusSubnetPrefix')]"
                         }
                     }
                 ]
@@ -158,14 +158,14 @@
                 "name": "Basic",
                 "tier": "Regional"
             },
-            "name": "[variables('westus2VMNicPIPName')]",
+            "name": "[variables('eastusVMNicPIPName')]",
             "apiVersion": "2018-08-01",
-            "location": "westus2",
+            "location": "eastus",
             "properties": {
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Static",
                 "dnsSettings":{
-                    "domainNameLabel": "[variables('westus2VMDNSName')]"
+                    "domainNameLabel": "[variables('eastusVMDNSName')]"
                 }
             },
             "dependsOn": []
@@ -209,9 +209,9 @@
         },
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[variables('westus2VMNicName')]",
+            "name": "[variables('eastusVMNicName')]",
             "apiVersion": "2018-08-01",
-            "location": "westus2",
+            "location": "eastus",
             "scale": null,
             "properties": {
                 "ipConfigurations": [
@@ -221,10 +221,10 @@
                             "privateIPAddress": "10.2.0.4",
                             "privateIPAllocationMethod": "Static",
                             "publicIPAddress": {
-                                "id": "[variables('westus2VMNicPIPResourceId')]"
+                                "id": "[variables('eastusVMNicPIPResourceId')]"
                             },
                             "subnet": {
-                                "id": "[variables('westus2SubnetResourceId')]"
+                                "id": "[variables('eastusSubnetResourceId')]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
@@ -235,13 +235,13 @@
                 "enableIPForwarding": false,
                 "primary": true,
                 "networkSecurityGroup": {
-                    "id": "[variables('westus2NSGResourceId')]"
+                    "id": "[variables('eastusNSGResourceId')]"
                 }
             },
             "dependsOn": [
-                "[variables('westus2VMNicPIPName')]",
-                "[variables('westus2VnetResourceId')]",
-                "[variables('westus2NSGResourceId')]"
+                "[variables('eastusVMNicPIPName')]",
+                "[variables('eastusVnetResourceId')]",
+                "[variables('eastusNSGResourceId')]"
             ]
         },
         {
@@ -328,9 +328,9 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[variables('westus2VMName')]",
+            "name": "[variables('eastusVMName')]",
             "apiVersion": "2018-06-01",
-            "location": "westus2",
+            "location": "eastus",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "Standard_DS1_v2"
@@ -344,7 +344,7 @@
                     },
                     "osDisk": {
                         "osType": "Linux",
-                        "name": "[concat(variables('westus2VMName'), '-disk')]",
+                        "name": "[concat(variables('eastusVMName'), '-disk')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
@@ -355,7 +355,7 @@
                     "dataDisks": []
                 },
                 "osProfile": {
-                    "computerName": "[variables('westus2VMName')]",
+                    "computerName": "[variables('eastusVMName')]",
                     "adminUsername": "[parameters('username')]",
                     "adminPassword": "[parameters('password')]",
                     "linuxConfiguration": {
@@ -368,7 +368,7 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[variables('westus2VMNicResourceId')]"
+                            "id": "[variables('eastusVMNicResourceId')]"
                         }
                     ]
                 },
@@ -383,7 +383,7 @@
                     "type": "extensions",
                     "name": "apache-ext",
                     "apiVersion": "2018-10-01",
-                    "location": "westus2",
+                    "location": "eastus",
                     "properties": {
                         "publisher": "Microsoft.Azure.Extensions",
                         "type": "CustomScript",
@@ -400,12 +400,12 @@
                         }
                     },
                     "dependsOn": [
-                        "[variables('westus2VMName')]"
+                        "[variables('eastusVMName')]"
                     ]
                 }
             ],
             "dependsOn": [
-                "[variables('westus2VMNicName')]"
+                "[variables('eastusVMNicName')]"
             ]
         }
     ],
