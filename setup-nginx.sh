@@ -1,11 +1,13 @@
 #!/bin/sh
 
 # Install nginx
-sudo apt-get -y update
-sudo apt -y install nginx
+#sudo apt-get -y update
+#sudo apt -y install nginx
+apt-get update -y && apt-get upgrade -y
+apt-get install -y nginx
 
 # Remove the default page
-sudo rm /var/www/html/index.nginx-debian.html
+rm /var/www/html/index.nginx-debian.html
 
 # Create the default page for the region
-sudo wget https://raw.githubusercontent.com/rambo2/Test-Funcs/master/index.$1.html -O /var/www/html/index.html
+wget https://raw.githubusercontent.com/rambo2/Test-Funcs/master/index.$1.html -O /var/www/html/index.html
