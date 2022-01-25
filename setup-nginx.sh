@@ -3,7 +3,7 @@
 # Install nginx
 #sudo apt-get -y update
 #sudo apt -y install nginx
-apt-get update -y && apt-get upgrade -y
+apt-get update -y
 apt-get install -y nginx
 
 # Remove the default page
