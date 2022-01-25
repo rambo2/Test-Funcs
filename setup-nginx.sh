@@ -1,10 +1,11 @@
 #!/bin/sh
 
 # Install nginx
-#sudo apt-get -y update
-#sudo apt -y install nginx
-apt-get update -y
-apt-get install -y nginx
+sudo apt-get -y update
+apt-get install nginx
+
+# sudo apt -y install nginx
+# apt-get update -y
 
 # Remove the default page
 rm /var/www/html/index.nginx-debian.html
