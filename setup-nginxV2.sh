@@ -22,11 +22,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-apt-get update -y && apt-get upgrade -y
-apt-get install -y nginx
+# apt-get update -y && apt-get upgrade -y
+# apt-get install -y nginx
 # Remove the default page
 rm /var/www/html/index.nginx-debian.html
 
 # Create the default page for the region
-wget https://raw.githubusercontent.com/rambo2/Test-Funcs/master/index.$1.html -O /var/www/html/index.html
+wget https://raw.githubusercontent.com/rambo2/Test-Funcs/master/index-$1.html -O /var/www/html/index.html
 
