@@ -311,9 +311,9 @@
                             "skipDos2Unix": true
                         },
                         "protectedSettings": {
-                            "commandToExecute": "sh automate_nginxV2.sh eastasia",
+                            "commandToExecute": "sh automate_nginxV1.sh eastasia",
                             "fileUris": [
-                                "[uri(variables('deploymentUrl'), 'automate_nginxV2.sh')]"
+                                "[uri(variables('deploymentUrl'), 'automate_nginxV1.sh')]"
                             ]
                         }
                     },
@@ -393,9 +393,9 @@
                             "skipDos2Unix": true
                         },
                         "protectedSettings": {
-                            "commandToExecute": "sh automate_nginxV2.sh westus2",
+                            "commandToExecute": "sh automate_nginxV1.sh westus2",
                             "fileUris": [
-                                "[uri(variables('deploymentUrl'), 'automate_nginxV2.sh')]"
+                                "[uri(variables('deploymentUrl'), 'automate_nginxV1.sh')]"
                             ]
                         }
                     },
