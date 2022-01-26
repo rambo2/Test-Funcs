@@ -27,3 +27,4 @@ apt-get install -y nginx
 rm /var/www/html/index.nginx-debian.html
 wget https://raw.githubusercontent.com/rambo2/Test-Funcs/master/index-eastasia.html -O /var/www/html/index.html
 touch tony.txt
+touch $1
